@@ -1,0 +1,31 @@
+<h2><i class="fa fa-server"></i> <%= @edi_ftp_server.name %></h2>
+<hr/>
+
+<%= simple_form_for [:admin, @edi_ftp_server] do |f| %>
+  
+  <%= render 'admin/shared/error_messages', object: f.object %>
+  <%= f.input :name %>
+  <%= f.input :hostname %>
+  <%= f.input :port %>
+  <%= f.input :protocol, collection: [['SFTP', :sftp], ['FTP', :ftp]] %>
+  <%= f.input :username %>
+  <%= f.input :password, as: :string %>
+  
+  <%= f.button :submit %>
+
+<% end %>
+
+
+
+
+<% content_for :title do %>
+	<%= @edi_ftp_server.name %>
+<% end %>
+
+
+
+<% content_for :breadcrumbs do %>
+	<li><a href="#">EDI Settings</a></li>
+	<li><%= link_to "Printers", admin_edi_ftp_servers_path %></li>
+	<li class="active"><%= @edi_ftp_server.name %></li>
+<% end %>

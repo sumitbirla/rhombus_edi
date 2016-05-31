@@ -1,0 +1,32 @@
+<h2><i class="fa fa-clock-o"></i> <%= @edi_task.id %></h2>
+<hr/>
+
+<%= simple_form_for [:admin, @edi_task] do |f| %>
+  
+  <%= render 'admin/shared/error_messages', object: f.object %>
+  <%= f.input :task_type, collection: [['Download', :download], ['Upload', :upload]] %>
+  <%= f.association :edi_ftp_server %>
+  <%= f.association :affiliate %>
+  <%= f.input :source_directory %>
+  <%= f.input :source_filemask %>
+  <%= f.input :destination_directory %>
+  <%= f.input :notify_email %>
+  <%= f.association :edi_printer %>
+  <%= f.button :submit %>
+
+<% end %>
+
+
+
+
+<% content_for :title do %>
+	EDI Schedule: <%= @edi_task.id  %>
+<% end %>
+
+
+
+<% content_for :breadcrumbs do %>
+	<li><a href="#">EDI Settings</a></li>
+	<li><%= link_to "Tasks", admin_edi_tasks_path %></li>
+	<li class="active"><%= @edi_task.id %></li>
+<% end %>
