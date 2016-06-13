@@ -16,8 +16,13 @@
 
 class EdiFtpServer < ActiveRecord::Base
   self.table_name = "edi_ftp_servers"
+  has_many :edi_tasks
   validates_presence_of :name, :hostname, :port, :username, :password, :protocol
-  validates :protocol, inclusion: { in: %w(ftp sftp),
+  validates :protocol, inclusion: { in: %w(ftp sftp ftps),
       message: "%{value} is not a valid protocol" }
+      
+  def to_s
+    "#{protocol}://#{username}@#{hostname}:#{port}"
+  end
 end
 

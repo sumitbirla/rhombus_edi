@@ -7,11 +7,13 @@
   <%= f.input :task_type, collection: [['Download', :download], ['Upload', :upload]] %>
   <%= f.association :edi_ftp_server %>
   <%= f.association :affiliate %>
+  <%= f.input :document_type, collection: [:orders, :packing_slips, :confirms, :inventory].map { |x| [x.to_s.titlecase, x] } %>
   <%= f.input :source_directory %>
   <%= f.input :source_filemask %>
   <%= f.input :destination_directory %>
   <%= f.input :notify_email %>
   <%= f.association :edi_printer %>
+  <%= f.input :active %>
   <%= f.button :submit %>
 
 <% end %>

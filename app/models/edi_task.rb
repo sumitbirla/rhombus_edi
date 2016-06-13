@@ -18,7 +18,7 @@
 #
 
 class EdiTask < ActiveRecord::Base
-  self.table_name = "edi_schedules"
+  self.table_name = "edi_tasks"
   belongs_to :affiliate
   belongs_to :edi_ftp_server
   belongs_to :edi_printer

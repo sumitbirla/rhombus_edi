@@ -5,30 +5,13 @@
 		<th></th>
     <th>FTP Server</th>
 		<th>Affiliate</th>
-		<th>Source path</th>
-    <th>Destination</th>
+		<th>Document Type</th>
     <th>Email</th>
     <th>Printer</th>
+    <th>Active</th>
     <th class="actions">&nbsp;</th>
 	</tr>
-	<% @edi_tasks.each do | t | %>
-	<tr>
-		<td><i class="fa fa-<%= t.task_type %>"></i></td>
-		<td><%= t.edi_ftp_server.name %></td>
-		<td><%= t.affiliate.name %></td>
-    <td><%= t.source_directory %>/<%= t.source_filemask %></td>
-    <td><%= t.destination_directory %></td>
-    <td><%= t.notify_email %></td>
-    <td><%= t.edi_printer %></td>
-		<td class="actions">
-			<%= link_to "edit", edit_admin_edi_task_path(t) %> &nbsp; 
-			<%= link_to "delete", 
-						  { action: "destroy", id: t.id }, 
-						  method: :delete, 
-						  data: { confirm: "Are you sure?" } %>
-		</td>
-	</tr>
-	<% end %>
+	<%= render @edi_tasks %>
 </table>
 
 
