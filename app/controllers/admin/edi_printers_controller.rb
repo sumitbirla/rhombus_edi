@@ -1,6 +1,6 @@
 class Admin::EdiPrintersController < Admin::BaseController
   def index
-    @edi_printers = EdiPrinter.page(params[:page]).order('name')
+    @edi_printers = EdiPrinter.order(:name).page(params[:page])
   end
 
   def new

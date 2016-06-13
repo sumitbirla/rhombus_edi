@@ -24,5 +24,9 @@ class EdiTask < ActiveRecord::Base
   belongs_to :edi_printer
   validates :task_type, inclusion: { in: %w(download upload),
       message: "%{value} is not a valid task" }
+      
+  def to_s
+    "#{task_type} #{affiliate} #{document_type}"
+  end
 end
 

@@ -13,7 +13,7 @@
 
 class EdiPrinter < ActiveRecord::Base
   self.table_name = "edi_printers"
-  validates_presence_of :name, :hostname, :port
+  validates_presence_of :name, :url
   
   def to_s
     name

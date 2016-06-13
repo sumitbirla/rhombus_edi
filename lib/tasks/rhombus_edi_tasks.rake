@@ -17,6 +17,7 @@ namespace :rhombus_edi do
         
         EdiTask.where(edi_ftp_server_id: srv.id, active: true).each do |t|
           @logger.debug "TASK #{t.id}: #{t.task_type}: #{t.source_directory} -> #{t.destination_directory}"
+          EdiLog.create(timestamp: DateTime.now, task_id: t.id, status: :ok)
         end
       end
       

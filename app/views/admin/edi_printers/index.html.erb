@@ -6,15 +6,17 @@
 <table class="table table-striped table-condensed">
 	<tr>
 		<th>Name</th>
-		<th>Address</th>
+		<th>URL</th>
 		<th>Location</th>
+    <th>Print Count</th>
 		<th class="actions">&nbsp;</th>
 	</tr>
 	<% @edi_printers.each do | p | %>
 	<tr>
 		<td><%= p.name %></td>
-		<td><code><%= p.hostname %>:<%=p.port %></code></td>
+		<td><code><%= p.url %></code></td>
 		<td><%= p.location %></td>
+    <td><%= number_with_delimiter(p.print_count) %></td>
 		<td class="actions">
 			<%= link_to "edit", edit_admin_edi_printer_path(p) %> &nbsp; 
 			<%= link_to "delete", 
