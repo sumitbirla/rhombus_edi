@@ -1,4 +1,6 @@
-<%= link_to "new ftp server", new_admin_edi_ftp_server_path, class: 'pull-right btn btn-sm btn-default'%>
+<%= link_to new_admin_edi_ftp_server_path, class: 'pull-right btn btn-sm btn-default' do %>
+  <i class="fa fa-plus"></i> New FTP server
+<% end %>
 <h2><i class="fa fa-server"></i> FTP Servers</h2>
 <table class="table table-striped table-condensed">
 	<tr>
@@ -31,9 +33,11 @@
 	<% end %>
 </table>
 
+<%= render 'admin/shared/table_summary', data: @edi_ftp_servers %>
+
 
 <% content_for :title do %>
-	EDI Printers
+	EDI FTP Servers
 <% end %>
 
 

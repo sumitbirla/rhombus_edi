@@ -13,6 +13,7 @@ namespace :rhombus_edi do
       
       Net::SFTP.start(srv.hostname, srv.username, :password => srv.password) do |sftp|
         @logger.debug "Connected"
+        srv.update(last_status: :ok)
         
         EdiTask.where(edi_ftp_server_id: srv.id, active: true).each do |t|
           @logger.debug "TASK #{t.id}: #{t.task_type}: #{t.source_directory} -> #{t.destination_directory}"

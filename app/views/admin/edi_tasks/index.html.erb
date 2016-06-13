@@ -1,4 +1,6 @@
-<%= link_to "new task", new_admin_edi_task_path, class: 'pull-right btn btn-sm btn-default'%>
+<%= link_to new_admin_edi_task_path, class: 'pull-right btn btn-sm btn-default' do %>
+  <i class="fa fa-plus"></i> New EDI task
+<% end %>
 <h2><i class="fa fa-clock-o"></i> EDI Tasks</h2>
 <table class="table table-striped table-condensed">
 	<tr>
@@ -13,6 +15,8 @@
 	</tr>
 	<%= render @edi_tasks %>
 </table>
+
+<%= render 'admin/shared/table_summary', data: @edi_tasks %>
 
 
 <% content_for :title do %>
