@@ -15,9 +15,14 @@ namespace :rhombus_edi do
         @logger.debug "Connected"
         srv.update(last_status: :ok)
         
-        EdiTask.where(edi_ftp_server_id: srv.id, active: true).each do |t|
+        EdiTask.where(edi_ftp_server_id: srv.id, active: true, task_type: :download).each do |t|
           @logger.debug "TASK #{t.id}: #{t.task_type}: #{t.source_directory} -> #{t.destination_directory}"
-          EdiLog.create(timestamp: DateTime.now, task_id: t.id, status: :ok)
+          
+          sftp.dir.foreach(t.source_directory) do |entry|
+              @logger.debug entry.longname
+              #sftp.download!(entry.longname, t.destination_directory)
+              #sftp.remove(entry.longname)
+          end
         end
       end
       
