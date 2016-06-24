@@ -7,7 +7,7 @@
 		<th>Name</th>
 		<th>Address</th>
 		<th>Last Accessed</th>
-    <th>Last Status</th>
+    <th>Result</th>
 		<th class="actions">&nbsp;</th>
 	</tr>
 	<% @edi_ftp_servers.each do | ftp | %>
@@ -21,7 +21,7 @@
         <%= systime ftp.updated_at  %>
       <% end %>
     </td>
-    <td><%= truncate ftp.last_status, length: 40 %></td>
+    <td class="<%= 'text-danger' if ftp.last_status != 'ok' %>"><%= truncate ftp.last_status, length: 40 %></td>
 		<td class="actions">
 			<%= link_to "edit", edit_admin_edi_ftp_server_path(ftp) %> &nbsp; 
 			<%= link_to "delete", 
