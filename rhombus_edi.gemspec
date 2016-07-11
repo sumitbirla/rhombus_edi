@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
 
-  s.add_dependency "rails", "~> 4.2.6"
+  s.add_dependency "rhombus_core"
   s.add_dependency "net-sftp"
   s.add_dependency "cupsffi"
 end
