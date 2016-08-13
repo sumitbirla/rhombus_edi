@@ -21,7 +21,7 @@ class EdiTask < ActiveRecord::Base
   self.table_name = "edi_tasks"
   belongs_to :affiliate
   belongs_to :edi_ftp_server
-  belongs_to :edi_printer
+  belongs_to :printer
   validates :task_type, inclusion: { in: %w(download upload),
       message: "%{value} is not a valid task" }
       
