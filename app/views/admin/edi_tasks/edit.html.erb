@@ -14,7 +14,7 @@
   <%= f.input :notify_email %>
   <%= f.association :edi_printer %>
   <%= f.input :active %>
-  <%= f.button :submit %>
+  <%= button_tag "Save changes", :class => "btn btn-primary", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Please wait ..." } %>
 
 <% end %>
 
