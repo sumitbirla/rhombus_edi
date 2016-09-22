@@ -4,7 +4,7 @@ class Admin::EdiLogsController < Admin::BaseController
     @edi_logs = EdiLog.includes(:edi_task, edi_task: :affiliate).order(sort_column + ' ' + sort_direction)
     
     respond_to do |format|
-      format.html { @edi_logs = @edi_logs.page(params[:page]) }
+      format.html { @edi_logs = @edi_logs.paginate(page: params[:page], per_page: @per_page) }
       format.csv { send_data "Not Implemented" }
     end
   end

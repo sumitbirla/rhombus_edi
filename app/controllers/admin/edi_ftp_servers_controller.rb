@@ -1,6 +1,6 @@
 class Admin::EdiFtpServersController < Admin::BaseController
   def index
-    @edi_ftp_servers = EdiFtpServer.page(params[:page]).order('name')
+    @edi_ftp_servers = EdiFtpServer.paginate(page: params[:page], per_page: @per_page).order('name')
   end
 
   def new
