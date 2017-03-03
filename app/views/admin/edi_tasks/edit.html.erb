@@ -12,7 +12,7 @@
   <%= f.input :source_filemask %>
   <%= f.input :destination_directory %>
   <%= f.input :notify_email %>
-  <%= f.association :edi_printer %>
+  <%= f.association :printer %>
   <%= f.input :active %>
   <%= button_tag "Save changes", :class => "btn btn-primary", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Please wait ..." } %>
 
