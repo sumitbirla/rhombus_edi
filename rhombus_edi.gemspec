@@ -18,5 +18,4 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rhombus_core"
   s.add_dependency "net-sftp"
-  s.add_dependency "cupsffi"
 end
