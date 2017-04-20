@@ -1,7 +1,7 @@
-class CreateRhombusEdiEdiSchedules < ActiveRecord::Migration
+class CreateRhombusEdiTasks < ActiveRecord::Migration
   def change
     create_table :edi_tasks do |t|
-      t.string :task, null: false
+      t.string :task_type, null: false
       t.boolean :active, null: false, default: true
       t.integer :affiliate_id, null: false
       t.integer :edi_ftp_server_id, null: false

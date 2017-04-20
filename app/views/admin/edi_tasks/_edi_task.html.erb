@@ -6,7 +6,7 @@
   <td><%= edi_task.notify_email.presence || "-" %></td>
   <td><%= edi_task.printer.presence || "-" %></td>
   <td><%= tick edi_task.active %></td>
-  <td><%= systime edi_task.last_executed %></td>
+  <td><%= edi_task.last_executed.nil? ? '- never ' : systime(edi_task.last_executed) %></td>
   <td class="<%= 'text-danger' if edi_task.last_status != 'ok' %>"><%= truncate edi_task.last_status, length: 40 %></td>
 	<td class="actions">
 		<%= link_to "edit", edit_admin_edi_task_path(edi_task) %> &nbsp; 

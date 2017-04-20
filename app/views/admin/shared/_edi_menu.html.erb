@@ -1,5 +1,5 @@
 <li class="<%= 'active' if request.original_url.include? 'admin/edi' %>">
-  <a href="#"><i class="fa fa-gear"></i> EDI Settings <span class="fa arrow"></span></a>
+  <a href="#"><i class="fa fa-gear fa-fw"></i> EDI Settings <span class="fa arrow"></span></a>
   <ul class="nav nav-second-level">
     <li><%= link_to "FTP Servers", admin_edi_ftp_servers_path %></li>
     <li><%= link_to "Tasks", admin_edi_tasks_path %></li>
