@@ -8,22 +8,22 @@ namespace :edi do
       sftp.dir.foreach(t.source_directory) do |entry|
         @logger.debug "Downloading #{t.source_directory}/#{entry.name}"
         
-		dst_path = t.destination_directory + "/" + entry.name
+		    dst_path = t.destination_directory + "/" + entry.name
         sftp.download!(t.source_directory + "/" + entry.name, dst_path)
         sftp.remove(t.source_directory + "/" + entry.name)
-        system "chown ftp:ftp #{dst_path}"
+        # system "chown ftp:ftp #{dst_path}"
 
-		@logger.debug "Deleted #{entry.name} from server"
+		    @logger.debug "Deleted #{entry.name} from server"
       end
       
     elsif t.task_type == 'upload'
       Dir.glob(t.source_directory + "/" + t.source_filemask).each do |f|
         @logger.debug "Uploading " + f
         
-		sftp.upload!(f, t.destination_directory + "/" + f.split("/").last)
+		    sftp.upload!(f, t.destination_directory + "/" + f.split("/").last)
         FileUtils.mv f, t.source_directory + "/history/"
 		
-		@logger.debug "Moved #{f} to history/"
+		    @logger.debug "Moved #{f} to history/"
       end
     end
 
@@ -37,10 +37,10 @@ namespace :edi do
       EdiTask.where(edi_ftp_server_id: srv.id, active: true).each do |t|
         begin 
           process_task(sftp, t)
-		  t.update_attributes(last_executed: DateTime.now, last_status: :ok)
+		      t.update_attributes(last_executed: DateTime.now, last_status: :ok)
         rescue => e
           @logger.error e
-		  t.update_attributes(last_executed: DateTime.now, last_status: e.message)
+		      t.update_attributes(last_executed: DateTime.now, last_status: e.message)
         end
       end
     end
@@ -57,7 +57,7 @@ namespace :edi do
     ftp_servers.each do |srv|
       begin
         process_server(srv)
-		srv.update_attribute(:last_status, :ok)
+		    srv.update_attribute(:last_status, :ok)
       rescue => e
         @logger.error e
         srv.update_attribute(:last_status, e.message)
