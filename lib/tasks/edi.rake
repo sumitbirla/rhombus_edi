@@ -31,18 +31,29 @@ namespace :edi do
   
   # Process tasks for a single SFTP server
   def process_server(srv)
-    Net::SFTP.start(srv.hostname, srv.username, :password => srv.password) do |sftp|
-      srv.update(last_status: :ok)
+    if protocol == 'sftp'
       
-      EdiTask.where(edi_ftp_server_id: srv.id, active: true).each do |t|
-        begin 
-          process_task(sftp, t)
-		      t.update_attributes(last_executed: DateTime.now, last_status: :ok)
-        rescue => e
-          @logger.error e
-		      t.update_attributes(last_executed: DateTime.now, last_status: e.message)
+      Net::SFTP.start(srv.hostname, srv.username, :password => srv.password) do |sftp|
+        srv.update(last_status: :ok)
+      
+        EdiTask.where(edi_ftp_server_id: srv.id, active: true).each do |t|
+          begin 
+            process_task(sftp, t)
+  		      t.update_attributes(last_executed: DateTime.now, last_status: :ok)
+          rescue => e
+            @logger.error e
+  		      t.update_attributes(last_executed: DateTime.now, last_status: e.message)
+          end
         end
       end
+      
+    elsif protocol == 'ftp'
+      ftp = Net::FTP.new(srv.hostname, srv.username, srv.password)
+      ftp.login
+      files = ftp.chdir("asdsa")
+      files = ftp.list('n*')
+      ftp.getbinaryfile('nif.rb-0.91.gz', 'nif.gz', 1024)
+      ftp.close
     end
   end
   
