@@ -24,5 +24,10 @@ class EdiFtpServer < ActiveRecord::Base
   def to_s
     "#{protocol}://#{username}@#{hostname}:#{port}"
   end
+  
+  # PUNDIT
+  def self.policy_class
+    ApplicationPolicy
+  end
 end
 

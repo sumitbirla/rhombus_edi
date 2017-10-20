@@ -28,5 +28,10 @@ class EdiTask < ActiveRecord::Base
   def to_s
     "#{task_type} #{affiliate} #{document_type}"
   end
+  
+  # PUNDIT
+  def self.policy_class
+    ApplicationPolicy
+  end
 end
 

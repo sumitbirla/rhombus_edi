@@ -1,15 +1,16 @@
 class Admin::EdiFtpServersController < Admin::BaseController
   def index
+    authorize EdiFtpServer
     @edi_ftp_servers = EdiFtpServer.paginate(page: params[:page], per_page: @per_page).order('name')
   end
 
   def new
-    @edi_ftp_server = EdiFtpServer.new(name: 'New edi_ftp_server', protocol: :sftp)
+    @edi_ftp_server = authorize EdiFtpServer.new(name: 'New edi_ftp_server', protocol: :sftp)
     render 'edit'
   end
 
   def create
-    @edi_ftp_server = EdiFtpServer.new(edi_ftp_server_params)
+    @edi_ftp_server = authorize EdiFtpServer.new(edi_ftp_server_params)
     
     if @edi_ftp_server.save
       Rails.cache.delete :edi_ftp_servers
@@ -20,15 +21,15 @@ class Admin::EdiFtpServersController < Admin::BaseController
   end
 
   def show
-    @edi_ftp_server = EdiFtpServer.find(params[:id])
+    @edi_ftp_server = authorize EdiFtpServer.find(params[:id])
   end
 
   def edit
-    @edi_ftp_server = EdiFtpServer.find(params[:id])
+    @edi_ftp_server = authorize EdiFtpServer.find(params[:id])
   end
 
   def update
-    @edi_ftp_server = EdiFtpServer.find(params[:id])
+    @edi_ftp_server = authorize EdiFtpServer.find(params[:id])
     
     if @edi_ftp_server.update(edi_ftp_server_params)
       redirect_to action: 'index', notice: 'FTP server was successfully updated.'
@@ -38,7 +39,7 @@ class Admin::EdiFtpServersController < Admin::BaseController
   end
 
   def destroy
-    @edi_ftp_server = EdiFtpServer.find(params[:id])
+    @edi_ftp_server = authorize EdiFtpServer.find(params[:id])
     @edi_ftp_server.destroy
     
     redirect_to action: 'index', notice: 'FTP server has been deleted.'
