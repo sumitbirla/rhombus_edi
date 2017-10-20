@@ -1,6 +1,6 @@
 class Admin::EdiFtpServersController < Admin::BaseController
   def index
-    authorize EdiFtpServer
+    authorize EdiFtpServer.new
     @edi_ftp_servers = EdiFtpServer.paginate(page: params[:page], per_page: @per_page).order('name')
   end
 

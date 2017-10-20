@@ -1,6 +1,6 @@
 class Admin::EdiTasksController < Admin::BaseController
   def index
-    authorize EdiTask
+    authorize EdiTask.new
     @edi_tasks = EdiTask.paginate(page: params[:page], per_page: @per_page).order(:affiliate_id)
   end
 
