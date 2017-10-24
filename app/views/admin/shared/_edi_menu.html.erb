@@ -1,8 +1,12 @@
 <li class="<%= 'active' if request.original_url.include? 'admin/edi' %>">
   <a href="#"><i class="fa fa-gear fa-fw"></i> EDI Settings <span class="fa arrow"></span></a>
   <ul class="nav nav-second-level">
-    <li><%= link_to "FTP Servers", admin_edi_ftp_servers_path %></li>
-    <li><%= link_to "Tasks", admin_edi_tasks_path %></li>
+    <% if current_user.has_permission?('EdiFtpServer', 'index')%>
+      <li><%= link_to "FTP Servers", admin_edi_ftp_servers_path %></li>
+    <% end %>
+    <% if current_user.has_permission?('EdiTask', 'index')%>
+      <li><%= link_to "Tasks", admin_edi_tasks_path %></li>
+    <% end %>
     <li><%= link_to "Log", admin_edi_logs_path %></li>
   </ul>
 </li>
