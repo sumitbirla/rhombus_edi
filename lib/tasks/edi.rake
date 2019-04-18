@@ -64,7 +64,7 @@ namespace :edi do
     @logger = Logger.new(Rails.root.join("log", "edi.log"))
     @logger.debug "Running..."
 
-    ftp_servers = EdiFtpServer.joins(:edi_tasks).where("edi_tasks.active=1").uniq
+    ftp_servers = EdiFtpServer.joins(:edi_tasks).where("edi_tasks.active=1").distinct
     ftp_servers.each do |srv|
       begin
         process_server(srv)
