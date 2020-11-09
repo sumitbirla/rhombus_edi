@@ -2,7 +2,7 @@
 <hr/>
 
 <%= simple_form_for [:admin, @edi_task] do |f| %>
-  
+
   <%= render 'admin/shared/error_messages', object: f.object %>
   <%= f.input :task_type, collection: [['Download', :download], ['Upload', :upload]] %>
   <%= f.association :edi_ftp_server %>
@@ -14,7 +14,7 @@
   <%= f.input :notify_email %>
   <%= f.association :printer %>
   <%= f.input :active %>
-  <%= button_tag "Save changes", :class => "btn btn-primary", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Please wait ..." } %>
+  <%= button_tag "Save changes", :class => "btn btn-primary", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Please wait ..."} %>
 
 <% end %>
 
@@ -22,13 +22,13 @@
 
 
 <% content_for :title do %>
-	EDI Schedule: <%= @edi_task.id  %>
+  EDI Schedule: <%= @edi_task.id %>
 <% end %>
 
 
 
 <% content_for :breadcrumbs do %>
-	<li><a href="#">EDI Settings</a></li>
-	<li><%= link_to "Tasks", admin_edi_tasks_path %></li>
-	<li class="active"><%= @edi_task.id %></li>
+  <li><a href="#">EDI Settings</a></li>
+  <li><%= link_to "Tasks", admin_edi_tasks_path %></li>
+  <li class="active"><%= @edi_task.id %></li>
 <% end %>

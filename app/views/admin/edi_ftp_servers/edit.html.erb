@@ -1,8 +1,8 @@
-<h2><i class="fa fa-server"></i> <%= @edi_ftp_server.name %></h2>
+git <h2><i class="fa fa-server"></i> <%= @edi_ftp_server.name %></h2>
 <hr/>
 
 <%= simple_form_for [:admin, @edi_ftp_server] do |f| %>
-  
+
   <%= render 'admin/shared/error_messages', object: f.object %>
   <%= f.input :name %>
   <%= f.input :hostname %>
@@ -10,8 +10,8 @@
   <%= f.input :protocol, collection: [['SFTP', :sftp], ['FTP', :ftp], ['FTPS', :ftps]] %>
   <%= f.input :username %>
   <%= f.input :password, as: :string %>
-  
-  <%= button_tag "Save changes", :class => "btn btn-primary", data: { disable_with: "<i class='fa fa-spinner fa-spin'></i> Please wait ..." } %>
+
+  <%= button_tag "Save changes", :class => "btn btn-primary", data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Please wait ..."} %>
 
 <% end %>
 
@@ -19,13 +19,13 @@
 
 
 <% content_for :title do %>
-	<%= @edi_ftp_server.name %>
+  <%= @edi_ftp_server.name %>
 <% end %>
 
 
 
 <% content_for :breadcrumbs do %>
-	<li><a href="#">EDI Settings</a></li>
-	<li><%= link_to "Printers", admin_edi_ftp_servers_path %></li>
-	<li class="active"><%= @edi_ftp_server.name %></li>
+  <li><a href="#">EDI Settings</a></li>
+  <li><%= link_to "Printers", admin_edi_ftp_servers_path %></li>
+  <li class="active"><%= @edi_ftp_server.name %></li>
 <% end %>

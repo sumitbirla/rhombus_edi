@@ -11,7 +11,7 @@ class Admin::EdiFtpServersController < Admin::BaseController
 
   def create
     @edi_ftp_server = authorize EdiFtpServer.new(edi_ftp_server_params)
-    
+
     if @edi_ftp_server.save
       Rails.cache.delete :edi_ftp_servers
       redirect_to action: 'index', notice: 'FTP server was successfully created.'
@@ -30,7 +30,7 @@ class Admin::EdiFtpServersController < Admin::BaseController
 
   def update
     @edi_ftp_server = authorize EdiFtpServer.find(params[:id])
-    
+
     if @edi_ftp_server.update(edi_ftp_server_params)
       redirect_to action: 'index', notice: 'FTP server was successfully updated.'
     else
@@ -41,14 +41,14 @@ class Admin::EdiFtpServersController < Admin::BaseController
   def destroy
     @edi_ftp_server = authorize EdiFtpServer.find(params[:id])
     @edi_ftp_server.destroy
-    
+
     redirect_to action: 'index', notice: 'FTP server has been deleted.'
   end
-  
-  
+
+
   private
-  
-    def edi_ftp_server_params
-      params.require(:edi_ftp_server).permit!
-    end
+
+  def edi_ftp_server_params
+    params.require(:edi_ftp_server).permit!
+  end
 end

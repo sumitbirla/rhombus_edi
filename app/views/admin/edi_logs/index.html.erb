@@ -1,44 +1,44 @@
 <h2>Log</h2>
 
 <table class="table table-striped table-condensed">
-	<tr>
-		<th><%= sortable "edi_logs.id", "ID" %></th>
+  <tr>
+    <th><%= sortable "edi_logs.id", "ID" %></th>
     <th><%= sortable "timestamp" %></th>
-		<th><%= sortable "core_affiliates.name", "Affiliate" %></th>
+    <th><%= sortable "core_affiliates.name", "Affiliate" %></th>
     <th><%= sortable "edi_tasks.document_type", "Document" %></th>
-    <th><%= sortable "edi_tasks.task_type", "Task"%>
-		<th><%= sortable "result" %></th>
+    <th><%= sortable "edi_tasks.task_type", "Task" %>
+    <th><%= sortable "result" %></th>
     <th>Files</th>
     <th>Error</th>
-		<th class="actions">&nbsp;</th>
-	</tr>
-	<% @edi_logs.each do | log | %>
-	<tr>
-		<td><%= log.id %></td>
-    <td><%= systime log.timestamp %></td>
-		<td><%= log.edi_task.affiliate %></td>
-		<td><%= log.edi_task.document_type %></td>
-    <td><%= log.edi_task.task_type %></td>
-    <td><%= log.result %></td>
-    <td><%= log.file_path %></td>
-    <td><%= truncate log.error_message, length: 30 %></td>
-		<td class="actions">
-			<%= link_to "view", admin_edi_log_path(log) %> 
-		</td>
-	</tr>
-	<% end %>
+    <th class="actions">&nbsp;</th>
+  </tr>
+  <% @edi_logs.each do |log| %>
+    <tr>
+      <td><%= log.id %></td>
+      <td><%= systime log.timestamp %></td>
+      <td><%= log.edi_task.affiliate %></td>
+      <td><%= log.edi_task.document_type %></td>
+      <td><%= log.edi_task.task_type %></td>
+      <td><%= log.result %></td>
+      <td><%= log.file_path %></td>
+      <td><%= truncate log.error_message, length: 30 %></td>
+      <td class="actions">
+        <%= link_to "view", admin_edi_log_path(log) %>
+      </td>
+    </tr>
+  <% end %>
 </table>
 
 <%= render 'admin/shared/table_summary', data: @edi_logs %>
 
 
 <% content_for :title do %>
-	EDI Printers
+  EDI Printers
 <% end %>
 
 
 <% content_for :breadcrumbs do %>
-	<li><a href="#">EDI Settings</a></li>
-	<li class="active">Printers</li>
+  <li><a href="#">EDI Settings</a></li>
+  <li class="active">Printers</li>
 <% end %>
 

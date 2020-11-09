@@ -11,7 +11,7 @@ class Admin::EdiTasksController < Admin::BaseController
 
   def create
     @edi_task = authorize EdiTask.new(edi_task_params)
-    
+
     if @edi_task.save
       Rails.cache.delete :edi_tasks
       redirect_to action: 'index', notice: 'Task was successfully created.'
@@ -30,7 +30,7 @@ class Admin::EdiTasksController < Admin::BaseController
 
   def update
     @edi_task = authorize EdiTask.find(params[:id])
-    
+
     if @edi_task.update(edi_task_params)
       redirect_to action: 'index', notice: 'Task was successfully updated.'
     else
@@ -41,14 +41,14 @@ class Admin::EdiTasksController < Admin::BaseController
   def destroy
     @edi_task = authorize EdiTask.find(params[:id])
     @edi_task.destroy
-    
+
     redirect_to action: 'index', notice: 'Task has been deleted.'
   end
-  
-  
+
+
   private
-  
-    def edi_task_params
-      params.require(:edi_task).permit!
-    end
+
+  def edi_task_params
+    params.require(:edi_task).permit!
+  end
 end
